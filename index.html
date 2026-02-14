@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Valentine Special 💝</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="bg-hearts" aria-hidden="true"></div>
+
+  <main class="card">
+    <p class="from">From <span>Insiya</span> 💌</p>
+
+    <h1 class="title">
+      Kittu, <br />
+      will you be my <span class="accent">Valentine</span>? 💖
+    </h1>
+
+    <p class="subtitle">Choose wisely 😌</p>
+
+    <div class="btn-row">
+      <button id="yesBtn" class="btn yes">Yes 💘</button>
+      <button id="noBtn" class="btn no">No 🙃</button>
+    </div>
+  </main>
+
+  <!-- Auto-close Modal (no close button) -->
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-box">
+      <h2 id="modalTitle">Yayyy! 🎉</h2>
+      <p class="modal-text">
+        Yay hurray! I knew you would say yes only, <b>my bubu</b> 💖
+      </p>
+
+      
+    </div>
+  </div>
+
+  <script>
+    const noMessages = [
+      "Are you sure?",
+      "Really?",
+      "Think again?",
+      "Last chance!",
+      "Surely not?",
+      "You might regret this!",
+      "Give one more chance to think!",
+      "You are absolutely sure?",
+      "This could be a mistake!",
+      "Have a heart!",
+      "Don't be so cold!",
+      "Change of heart?"
+    ];
+
+    let noIndex = 0;
+    let redirectTimer = null;
+
+    const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
+    const modal = document.getElementById("modal");
+
+    function showFloatingMessage(text) {
+      const msg = document.createElement("div");
+      msg.className = "floating-msg";
+      msg.textContent = text;
+
+      const padding = 20;
+      const maxX = Math.max(padding, window.innerWidth - 260);
+      const maxY = Math.max(padding, window.innerHeight - 80);
+
+      const randomX = Math.max(padding, Math.floor(Math.random() * maxX));
+      const randomY = Math.max(padding, Math.floor(Math.random() * maxY));
+
+      msg.style.left = randomX + "px";
+      msg.style.top  = randomY + "px";
+
+      document.body.appendChild(msg);
+      setTimeout(() => msg.remove(), 1800);
+    }
+
+    noBtn.addEventListener("click", () => {
+      const text = noMessages[noIndex % noMessages.length];
+      noIndex++;
+      showFloatingMessage(text);
+
+      // small playful movement
+      const shiftX = Math.floor(Math.random() * 40) - 20;
+      const shiftY = Math.floor(Math.random() * 20) - 10;
+      noBtn.style.transform = `translate(${shiftX}px, ${shiftY}px)`;
+    });
+
+    yesBtn.addEventListener("click", () => {
+      modal.classList.add("show");
+
+      // clear any previous timer (if user clicks yes multiple times)
+      if (redirectTimer) clearTimeout(redirectTimer);
+
+      // Auto close after 5 seconds, then redirect
+      redirectTimer = setTimeout(() => {
+        modal.classList.remove("show");
+        window.location.href = "cards.html";
+      }, 5000);
+    });
+
+    // Optional: prevent ESC closing (since you want auto-close only)
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        e.preventDefault();
+      }
+    });
+  </script>
+</body>
+</html>

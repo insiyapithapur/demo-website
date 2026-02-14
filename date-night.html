@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Date Night 🍽️</title>
+  <link rel="stylesheet" href="date-night.css"/>
+</head>
+<body>
+
+  <div class="bg"></div>
+
+  <header class="hero">
+    <a href="cards.html" class="back">← Back</a>
+
+    <h1>Lunch Date With Me? 🍓</h1>
+    <p class="sub">
+      Let’s eat something together 💖  
+      <br> Select one option for our lunch, my bubu 😌
+    </p>
+  </header>
+
+  <main class="container">
+
+    <div class="options">
+
+      <div class="card" data-food="McD 🍔">
+        <span class="emoji">🍔</span>
+        <h3>McD</h3>
+      </div>
+
+      <div class="card" data-food="KFC 🍗">
+        <span class="emoji">🍗</span>
+        <h3>KFC</h3>
+      </div>
+
+      <div class="card" data-food="Indian Thali 🍛">
+        <span class="emoji">🍛</span>
+        <h3>Indian Thali</h3>
+      </div>
+
+      <div class="card" data-food="Pizza 🍕">
+        <span class="emoji">🍕</span>
+        <h3>Pizza</h3>
+      </div>
+
+    </div>
+
+    <div id="result" class="result"></div>
+
+  </main>
+
+<script>
+  const cards = document.querySelectorAll(".card");
+  const result = document.getElementById("result");
+
+  cards.forEach(card => {
+    card.addEventListener("click", () => {
+
+      // remove previous selection
+      cards.forEach(c => c.classList.remove("selected"));
+
+      // select current
+      card.classList.add("selected");
+
+      const food = card.dataset.food;
+
+      result.innerHTML = `💖 Yay! ${food} it is! Can't wait for our lunch date 😍`;
+    });
+  });
+</script>
+
+</body>
+</html>

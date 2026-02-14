@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Memories 📸</title>
+  <link rel="stylesheet" href="memories.css" />
+</head>
+<body>
+  <div class="bg" aria-hidden="true"></div>
+
+  <header class="top">
+    <a class="back" href="cards.html">← Back</a>
+    <div class="titlebox">
+      <p class="tag">Bubu × Gomu 💞</p>
+      <h1>Our Memories 📸</h1>
+      <p class="sub">14 little frames of love, laughter, and us.</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="grid" aria-label="Memories grid">
+      <!-- Put your 14 images in /memories folder and name them 1.jpg ... 14.jpg -->
+      <button class="tile" data-src="photo1.jpeg"  aria-label="Open memory 1"><img src="photo1.jpeg"  alt="Memory 1"></button>
+      <button class="tile" data-src="photo2.jpeg"  aria-label="Open memory 2"><img src="photo2.jpeg"  alt="Memory 2"></button>
+      <button class="tile" data-src="photo3.jpeg"  aria-label="Open memory 3"><img src="photo3.jpeg"  alt="Memory 3"></button>
+      <button class="tile" data-src="photo4.jpeg"  aria-label="Open memory 4"><img src="photo4.jpeg"  alt="Memory 4"></button>
+      <button class="tile" data-src="photo5.jpeg"  aria-label="Open memory 5"><img src="photo5.jpeg"  alt="Memory 5"></button>
+      <button class="tile" data-src="photo6.jpeg"  aria-label="Open memory 6"><img src="photo6.jpeg"  alt="Memory 6"></button>
+      <button class="tile" data-src="photo7.jpeg"  aria-label="Open memory 7"><img src="photo7.jpeg"  alt="Memory 7"></button>
+      <button class="tile" data-src="photo8.jpeg"  aria-label="Open memory 8"><img src="photo8.jpeg"  alt="Memory 8"></button>
+      <button class="tile" data-src="photo9.jpeg"  aria-label="Open memory 9"><img src="photo9.jpeg"  alt="Memory 9"></button>
+      <button class="tile" data-src="photo10.jpeg" aria-label="Open memory 10"><img src="photo10.jpeg" alt="Memory 10"></button>
+      <button class="tile" data-src="photo11.jpeg" aria-label="Open memory 11"><img src="photo11.jpeg" alt="Memory 11"></button>
+      <button class="tile" data-src="photo12.jpeg" aria-label="Open memory 12"><img src="photo12.jpeg" alt="Memory 12"></button>
+      <button class="tile" data-src="photo13.jpeg" aria-label="Open memory 13"><img src="photo13.jpeg" alt="Memory 13"></button>
+      <button class="tile" data-src="photo14.jpeg" aria-label="Open memory 14"><img src="photo14.jpeg" alt="Memory 14"></button>
+    </section>
+
+    <footer class="footer">
+      <p>Made by your <b>Bubu</b> for <b>her Gomu</b> 💗</p>
+    </footer>
+  </main>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <div class="lightbox-inner" role="dialog" aria-modal="true" aria-label="Image viewer">
+      <button class="lb-close" id="lbClose" aria-label="Close">✕</button>
+      <img id="lbImg" src="" alt="Opened memory" />
+      <div class="lb-hint">Tip: click outside the image to close</div>
+    </div>
+  </div>
+
+  <script>
+    const tiles = document.querySelectorAll(".tile");
+    const lightbox = document.getElementById("lightbox");
+    const lbImg = document.getElementById("lbImg");
+    const lbClose = document.getElementById("lbClose");
+
+    function openLightbox(src){
+      lbImg.src = src;
+      lightbox.classList.add("show");
+      lightbox.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeLightbox(){
+      lightbox.classList.remove("show");
+      lightbox.setAttribute("aria-hidden", "true");
+      lbImg.src = "";
+      document.body.style.overflow = "";
+    }
+
+    tiles.forEach(t => t.addEventListener("click", () => openLightbox(t.dataset.src)));
+    lbClose.addEventListener("click", closeLightbox);
+
+    lightbox.addEventListener("click", (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && lightbox.classList.contains("show")) closeLightbox();
+    });
+  </script>
+</body>
+</html>

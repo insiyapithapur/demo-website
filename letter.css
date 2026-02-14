@@ -1,0 +1,74 @@
+:root{
+  --pink:#ff4d8d;
+  --hot:#ff2e74;
+}
+
+body{
+  margin:0;
+  font-family: Georgia, "Times New Roman", serif;
+  background: radial-gradient(circle at top, #ffe1ec, #ffc0d9);
+  color:#2a1f26;
+}
+
+.bg{
+  position:fixed;
+  inset:0;
+  opacity:.4;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(255,255,255,.6) 0 2px, transparent 3px),
+    radial-gradient(circle at 80% 20%, rgba(255,255,255,.5) 0 2px, transparent 3px);
+}
+
+.top{
+  text-align:center;
+  padding:30px 20px 10px;
+}
+
+.top h1{
+  font-size:40px;
+  margin-bottom:5px;
+  color:#7a0b2f;
+}
+
+.tag{
+  opacity:.8;
+}
+
+.back{
+  position:absolute;
+  left:20px;
+  top:20px;
+  text-decoration:none;
+  background:white;
+  padding:8px 14px;
+  border-radius:999px;
+  font-weight:600;
+  color:#333;
+}
+
+.container{
+  max-width:800px;
+  margin:auto;
+  padding:20px;
+}
+
+.letter{
+  background:white;
+  padding:40px;
+  border-radius:16px;
+  box-shadow:0 20px 50px rgba(0,0,0,0.15);
+  line-height:1.8;
+  font-size:18px;
+}
+
+.quote{
+  font-style:italic;
+  color:#7a0b2f;
+  font-weight:600;
+}
+
+.ending{
+  margin-top:20px;
+  font-weight:600;
+  color:#7a0b2f;
+}
